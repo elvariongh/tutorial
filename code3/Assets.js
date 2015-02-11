@@ -71,7 +71,7 @@
             var bufView = new Uint8Array(data);
             var length = bufView.length;
             var s = '';
-            for(var i = 0; i < length; i+=65535)
+            for(var i = 0; i < length; i += 65535)
             {
                 var addition = 65535;
                 if(i + 65535 > length)
