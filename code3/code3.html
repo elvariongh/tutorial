@@ -1,0 +1,27 @@
+<html>
+    <body>
+    </body>
+    <script type="text/javascript" src="TiledGameEngine.js"> </script>
+    <script type="text/javascript" src="Stage.js"> </script>
+    <script type="text/javascript" src="Assets.js"> </script>
+    <script type="text/javascript" src="LoadingStage.js"> </script>
+    <script type="text/javascript">
+    
+    function start() {
+        var TGE = new TiledGameEngine();
+        TGE.init();
+
+        var stage = new TiledGameEngine.LoadingStage();
+
+        stage.request(['sage_home.png', 'sage_home.json']);
+        
+        TGE.addStage('load', stage);
+        
+        TGE.activateStage('load');
+        
+        TGE.start();
+    };
+    
+    window.onload = start;
+    </script>
+</html>
