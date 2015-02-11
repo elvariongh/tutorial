@@ -169,6 +169,6 @@
         }
     };
     
-    TGE.Assets = Assets;
+    TGE['Assets'] = Assets;
 
 })(window, TiledGameEngine);

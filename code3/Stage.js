@@ -52,5 +52,5 @@
         }
     };
     
-    TGE.Stage = Stage;
+    TGE['Stage'] = Stage;
 })(window, TiledGameEngine);

@@ -92,5 +92,5 @@
         return o;
     })();
     
-    TGE.LoadingStage = LoadingStage;
+    TGE['LoadingStage'] = LoadingStage;
 })(window, TiledGameEngine);

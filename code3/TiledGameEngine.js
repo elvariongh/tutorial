@@ -18,6 +18,8 @@ function TGE() {
 TGE.prototype = {
     /**
      * Initialize the TGE
+     * @this {TGE}
+     * @export
      */
     init: function() {
         this.initialized = true;
@@ -26,6 +28,8 @@ TGE.prototype = {
 
     /**
      * Start the game loop
+     * @this {TGE}
+     * @export
      */
     start: function() {
         if (!this.initialized) return;
@@ -39,6 +43,8 @@ TGE.prototype = {
 
     /**
      * Stop the game loop
+     * @this {TGE}
+     * @export
      */
     stop: function() {
         if (this.running) {
@@ -54,6 +60,8 @@ TGE.prototype = {
     /**
      * Game loop body
      * @param {number}  time     frame timestamp
+     * @private
+     * @this {TGE}
      */
     frame: function(time) {
         var dt = time - this.time;
@@ -81,6 +89,7 @@ TGE.prototype = {
      * @param {number}  dt      time difference from last update
      * @return {number}         Return time difference (in ms) to next update
      * @private
+     * @this {TGE}
      */
     update: function(dt) {
         if (this.activeStage) {
@@ -94,6 +103,7 @@ TGE.prototype = {
     /**
      * Called internally from game loop body to render current stage
      * @private
+     * @this {TGE}
      */
     render: function() {
         if (this.activeStage) {
@@ -103,6 +113,13 @@ TGE.prototype = {
         console.log('TGE::render');
     },
     
+    /**
+     * Add stage to the contrainer
+     * @param {string}  name    Stage name
+     * @param {Stage}   stage   Stage object
+     * @this {TGE}
+     * @export
+     */
     addStage: function(name, stage) {
         if (!this.stages[name]) {
             this.stages[name] = stage;
@@ -112,6 +129,13 @@ TGE.prototype = {
         return false;
     },
     
+    /**
+     * Deactivate current stage and switch to the specified one
+     * @param {string}      name    New stage name
+     * @return {boolean}    TRUE on success
+     * @this {TGE}
+     * @export
+     */
     activateStage: function(name) {
         if (this.activeStage) {
             this.activeStage.deactivate();
