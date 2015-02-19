@@ -24,13 +24,14 @@
 		var t = document.querySelector(tag);
         
         if (t) {
-            t.innerHTML =   '<canvas style="position:absolute; left:0px;  top: 0px; z-index:0;" id="_background"></canvas>'+
-                            '<canvas style="position:absolute; left:0px;  top: 0px; z-index:1;" id="_entity"></canvas>';
+            t.innerHTML =   '<canvas style="position:fixed; left:0px;  top: 0px; z-index:0;" id="_background"></canvas>'+
+                            '<canvas style="position:fixed; left:0px;  top: 0px; z-index:1;" id="_entity"></canvas>';
         }
 
         // store viewport reference and set initial css styles
         this.domViewport = t;
-        this.domViewport.style.cssText = 'position:absolute; left: 50%; margin-left: -'+width/2+'px; top:50%; margin-top: -'+height/2+'px; display:none;';
+        this.domViewport.style.cssText = 'position:fixed; left: 0px; top:0px; display:none;';
+//        this.domViewport.style.cssText = 'position:absolute; left: 50%; margin-left: -'+width/2+'px; top:50%; margin-top: -'+height/2+'px; display:none;';
         
         // store canvas context for further usage
         var canvas = [document.getElementById('_background'), document.getElementById('_entity')];
@@ -39,7 +40,7 @@
         }
         
         // desktop only events: resize, mousedown, mouseup, mousemove
-//	window.addEventListener('resize', this.onResize.bind(this));
+		window.addEventListener('resize', this.onResize.bind(this));
         t.addEventListener('mousedown', this.onMouseDown.bind(this));
         t.addEventListener('mouseup', this.onMouseUp.bind(this));
         t.addEventListener('mousemove', this.onMouseMove.bind(this));
@@ -106,9 +107,6 @@
             // store new initial mouse position
             this.dnd[0] = e.clientX;
             this.dnd[1] = e.clientY;
-            
-//            this.domViewport.style.left = this.viewport[0] + 'px';
-//            this.domViewport.style.top = this.viewport[1] + 'px';
             
             // notify all subscribers
             TGE.bus.notify('onviewportmove');
