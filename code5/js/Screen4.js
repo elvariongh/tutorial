@@ -30,7 +30,7 @@
 
         // store viewport reference and set initial css styles
         this.domViewport = t;
-        this.domViewport.style.cssText = 'position:absolute; left: 50%; margin-left: -'+width/2+'px; top:50%; margin-top: -'+height/2+'px; display:none;';
+        this.domViewport.style.cssText = 'position:fixed; left: 0px; top:0px; display:none;';
         
         // store canvas context for further usage
         var canvas = [document.getElementById('_background'), document.getElementById('_entity')];
@@ -39,7 +39,7 @@
         }
         
         // desktop only events: resize, mousedown, mouseup, mousemove
-//	window.addEventListener('resize', this.onResize.bind(this));
+		window.addEventListener('resize', this.onResize.bind(this));
         t.addEventListener('mousedown', this.onMouseDown.bind(this));
         t.addEventListener('mouseup', this.onMouseUp.bind(this));
         t.addEventListener('mousemove', this.onMouseMove.bind(this));

@@ -232,14 +232,14 @@
  "tilesets":[
         {
          "firstgid":1,
-         "image":"C:\/Users\/sokolovp\/Downloads\/flare-mod-noname-master\/flare-mod-noname-master\/tiled\/grassland\/tiled_collision.png",
+         "image":"grassland\/tiled_collision.png",
          "imageheight":32,
          "imagewidth":960,
          "margin":0,
          "name":"collision",
          "properties":
             {
-             "download":"0"
+
             },
          "spacing":0,
          "tileheight":32,
@@ -247,7 +247,7 @@
         }, 
         {
          "firstgid":16,
-         "image":"C:\/Users\/sokolovp\/Downloads\/flare-mod-noname-master\/flare-mod-noname-master\/tiled\/grassland\/grassland.png",
+         "image":"grassland\/grassland.png",
          "imageheight":1024,
          "imagewidth":1024,
          "margin":0,
@@ -262,7 +262,7 @@
         }, 
         {
          "firstgid":144,
-         "image":"C:\/Users\/sokolovp\/Downloads\/flare-mod-noname-master\/flare-mod-noname-master\/tiled\/grassland\/grassland_water.png",
+         "image":"grassland\/grassland_water.png",
          "imageheight":256,
          "imagewidth":1024,
          "margin":0,
@@ -282,7 +282,7 @@
         }, 
         {
          "firstgid":208,
-         "image":"C:\/Users\/sokolovp\/Downloads\/flare-mod-noname-master\/flare-mod-noname-master\/tiled\/grassland\/grassland_structures.png",
+         "image":"grassland\/grassland_structures.png",
          "imageheight":512,
          "imagewidth":1024,
          "margin":0,
@@ -297,7 +297,7 @@
         }, 
         {
          "firstgid":240,
-         "image":"C:\/Users\/sokolovp\/Downloads\/flare-mod-noname-master\/flare-mod-noname-master\/tiled\/grassland\/grassland_trees.png",
+         "image":"grassland\/grassland_trees.png",
          "imageheight":512,
          "imagewidth":1024,
          "margin":0,
@@ -317,14 +317,14 @@
         }, 
         {
          "firstgid":256,
-         "image":"C:\/Users\/sokolovp\/Downloads\/flare-mod-noname-master\/flare-mod-noname-master\/tiled\/grassland\/set_rules.png",
+         "image":"grassland\/set_rules.png",
          "imageheight":128,
          "imagewidth":128,
          "margin":0,
          "name":"set_rules",
          "properties":
             {
-             "download":"0"
+
             },
          "spacing":0,
          "tileheight":32,
@@ -332,7 +332,7 @@
         }, 
         {
          "firstgid":264,
-         "image":"C:\/Users\/sokolovp\/Downloads\/flare-mod-noname-master\/flare-mod-noname-master\/tiled\/grassland\/tiled_grassland_2x2.png",
+         "image":"grassland\/tiled_grassland_2x2.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
