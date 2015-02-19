@@ -43,9 +43,9 @@
 
         for (var i = this.handlers[key].length; i--;) {
             if (value) {
-                this.handlers[key][i](key, value)
+                this.handlers[key][i](key, value);
             } else {
-                this.handlers[key][i](key)
+                this.handlers[key][i](key);
             }
         }
     };

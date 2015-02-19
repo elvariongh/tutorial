@@ -19,37 +19,25 @@
         
         // viewport DnD structure [startX, startY, dragging, dx, dy]
         this.dnd = new Int32Array([0, 0, 0, 0, 0]);
-
-        // create canvas elements inside container
-		var t = document.querySelector(tag);
         
-        if (t) {
-            t.innerHTML =   '<canvas style="position:fixed; left:0px;  top: 0px; z-index:0;" id="_background"></canvas>'+
-                            '<canvas style="position:fixed; left:0px;  top: 0px; z-index:1;" id="_entity"></canvas>';
-        }
+        this.layers = 0;
 
         // store viewport reference and set initial css styles
-        this.domViewport = t;
+        this.domViewport = document.querySelector(tag);
         this.domViewport.style.cssText = 'position:fixed; left: 0px; top:0px; display:none;';
-//        this.domViewport.style.cssText = 'position:absolute; left: 50%; margin-left: -'+width/2+'px; top:50%; margin-top: -'+height/2+'px; display:none;';
-        
-        // store canvas context for further usage
-        var canvas = [document.getElementById('_background'), document.getElementById('_entity')];
-        for (var l = canvas.length; l--;) {
-            this.ctx[l] = canvas[l].getContext('2d');
-        }
         
         // desktop only events: resize, mousedown, mouseup, mousemove
 		window.addEventListener('resize', this.onResize.bind(this));
-        t.addEventListener('mousedown', this.onMouseDown.bind(this));
-        t.addEventListener('mouseup', this.onMouseUp.bind(this));
-        t.addEventListener('mousemove', this.onMouseMove.bind(this));
-        t.addEventListener('mouseout', this.onMouseUp.bind(this));
+        this.domViewport.addEventListener('mousedown', this.onMouseDown.bind(this));
+        this.domViewport.addEventListener('mouseup', this.onMouseUp.bind(this));
+        this.domViewport.addEventListener('mousemove', this.onMouseMove.bind(this));
+        this.domViewport.addEventListener('mouseout', this.onMouseUp.bind(this));
         
-        // set initial viewport size
-        this.resize(width, height);
+        // create canvas elements inside container
+        this.addLayer(2);
     };
     
+    // mouse down handler - start dragging
     Screen.prototype.onMouseDown = function(e) {
         // stop event propagation
         e.preventDefault();
@@ -62,6 +50,7 @@
         this.dnd[2] = true;
     };
     
+    // mouse up and mouse out handler - stop dragging
     Screen.prototype.onMouseUp = function(e) {
         // stop event propagation
         e.preventDefault();
@@ -86,6 +75,7 @@
         }
     };
     
+    // mouse move handler - drag
     Screen.prototype.onMouseMove = function(e) {
         if (this.dnd[2]) {
             // stop event propagation
@@ -121,10 +111,8 @@
     // resize canvas and viewport
     Screen.prototype.resize = function(width, height) {
         for (var l = this.ctx.length; l--;) {
-            this.ctx[l].canvas.width = width;
-            this.ctx[l].canvas.height = height;
-            this.ctx[l].width = width;
-            this.ctx[l].height = height;
+            this.ctx[l].canvas.width = this.ctx[l].width = width;
+            this.ctx[l].canvas.height = this.ctx[l].height = height;
         }
         
         this.viewport[2] = width;
@@ -160,11 +148,40 @@
     
     // get canvas context for layer.
     // @param {number}  layer   Layer number (0 for bottom layer)
-    Screen.prototype.getCTX = function(layer) {
+    Screen.prototype.getLayer = function(layer) {
         if (this.ctx.length > layer)
             return this.ctx[layer];
 
         return undefined;
+    };
+    
+    // add new canvas layer
+    Screen.prototype.addLayer = function(count) {
+        count = count || 1;
+        var t = this.domViewport.innerHTML, i = this.layers;
+        
+        while(count--) {
+            
+            t += '<canvas style="position:fixed; left: 0px; top: 0px; z-index: '+(i)+';" id="_tgelr'+(i)+'"></canvas>';
+            
+            ++i;
+        }
+
+        this.domViewport.innerHTML = t;
+        
+        var l = i;//this.ctx.length;
+        i = 0;
+            
+        for (; i < l; ++i) {
+            this.ctx[i] = document.getElementById('_tgelr'+i);
+            this.ctx[i] = this.ctx[i].getContext('2d')
+            
+        }
+        
+        this.layers = l;
+        
+        // set viewport size
+        this.resize(this.viewport[2], this.viewport[3]);
     };
 
     // clear specified layer/all layers

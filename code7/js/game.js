@@ -15,55 +15,61 @@ function Game() {
     this.assetsLoaded = false;
     
     // create LoadingStage instance
-    var stage = new TiledGameEngine.LoadingStage(this.assets, true, this.screen);
-
+    var stage = new TiledGameEngine.LoadingStage(this.assets, this.screen, true);
     // add loader stage into game loop manager
     this.addStage('load', stage);
     
     // TMX Map parser
     this.map = new TiledGameEngine.TiledMap(this.assets, 'sage_home.json');
+
+    // create MapStage instance
+    stage = new TiledGameEngine.TiledMapStage(this.assets, this.screen, this.map);
+    this.addStage('playground', stage);
 };
 
-Game.prototype = (function() {
-    // super-class inheritance
-    var o = Object.create(TiledGameEngine.prototype);
+// super-class inheritance
+Game.prototype = Object.create(TiledGameEngine.prototype);
     
-    o.init = function() {
-        // call super-class
-        TiledGameEngine.prototype.init.call(this);
+Game.prototype.init = function() {
+    // call super-class
+    TiledGameEngine.prototype.init.call(this);
 
-        // request assets from server
+    // request assets from server
+    var stage = this.getStage('load');
+    stage.request('sage_home.json');
+    
+    TiledGameEngine.bus.subscribe('assetsLoaded', this.onAssetsLoaded.bind(this));
+    
+    TiledGameEngine.bus.subscribe('tmxMapParsed', this.onMapParsed.bind(this));
+
+    // activate loader stage. Loading will be started automatically (see stLoader creation)
+    this.activateStage('load');
+
+    // show screen
+    this.screen.show(true);
+};
+    
+Game.prototype.onAssetsLoaded = function() {
+    console.log('onAssetsLoaded');
+    
+    if (!this.assetsLoaded) {
+        // .json file loaded - time to download assets from map
+        this.assetsLoaded = true;
+        
         var stage = this.getStage('load');
-        stage.request('sage_home.json');
         
-        TiledGameEngine.bus.subscribe('assetsLoaded', this.onAssetsLoaded.bind(this));
-
-        // activate loader stage. Loading will be started automatically (see stLoader creation)
-        this.activateStage('load');
-
-        // show screen
-        this.screen.show(true);
-    };
-    
-    o.onAssetsLoaded = function() {
-        console.log('onAssetsLoaded');
+        stage.request(this.map.getAssets());
         
-        if (!this.assetsLoaded) {
-            // download assets from map
-            this.assetsLoaded = true;
-            
-            var stage = this.getStage('load');
-            
-            stage.request(this.map.getAssets());
-            
-            stage.start();
-        } else {
-            this.map.parse();
-        }
-    };
-    
-    return o;
-})();
+        stage.start();
+    } else {
+        // all assets loaded - time to parse map
+        this.map.parse();
+    }
+};
+
+Game.prototype.onMapParsed = function(key, value) {
+    setTimeout((function() { this.activateStage('playground'); }).bind(this), 1000);
+};
 
 var G;
 function start() {
