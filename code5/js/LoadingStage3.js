@@ -60,7 +60,7 @@
             this.screen.clear();
             
             // move viewport to initial position
-            this.screen.move(-251, -52);
+            this.screen.move(-150, -764);
 
             // set CTX properties once
             this.ctxBG = this.screen.getCTX(0);
@@ -191,13 +191,13 @@
             this.ctxBG.drawImage(this.img, vp[0], vp[1]);
         }
         
-        this.ctxBG.fillRect(260 + vp[0], 60 + vp[3]/2 - 10 + vp[1], (vp[2]-20) * this.progress / 100, 20);
-        this.ctxBG.strokeRect(260 + vp[0], 60 + vp[3]/2 - 10 + vp[1], vp[2]-20, 20);
+        this.ctxBG.fillRect(160 + vp[0], 764 + vp[3]/2 - 10 + vp[1], (vp[2]-20) * this.progress / 100, 20);
+        this.ctxBG.strokeRect(160 + vp[0], 764 + vp[3]/2 - 10 + vp[1], vp[2]-20, 20);
         
         // render progress text
         this.ctxEntity.clearRect(0, 0, vp[2], vp[3]);
         
-        this.ctxEntity.fillText(this.progress + '% Loaded', 260 + vp[2]/2 + vp[0], 60 + vp[3]/2 + vp[1], vp[2]-60);
+        this.ctxEntity.fillText(this.progress + '% Loaded', 160 + vp[2]/2 + vp[0], 764 + vp[3]/2 + vp[1], vp[2]-60);
     };
    
     TGE['LoadingStage'] = LoadingStage;
