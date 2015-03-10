@@ -158,7 +158,7 @@
      * @return {number}         Return time difference (in ms) to next update
      */
     TiledMapStage.prototype['update'] = function(dt, t) {
-        // 2 FPS if no screen, map or stage is not active
+        // 2 FPS if no screen, no map or stage is not active
         if (!this['screen'] || !this.tmap || !this['active']) return 500;
         
         if (!this.tmap['ready']) {
