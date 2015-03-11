@@ -13,6 +13,8 @@
         
         this.progress = 0;
         this.autostart = autostart !== undefined ? autostart : true;
+
+	this.log = document.getElementById('log');
     };
     
     LoadingStage.prototype = (function() {
@@ -40,6 +42,7 @@
          */
         o.start = function() {
             this.am.download( this.fnDone.bind(this), this.fnProgress.bind(this) );
+            this.log.innerHTML += Date.now() + ' LoadingStage::started<br />';
         };
         
         /**
@@ -47,6 +50,7 @@
          * @this {LoadingStage}
          */
         o.fnDone = function() {
+            this.log.innerHTML += Date.now() + ' [LoadingStage] all assets loaded<br />';
             console.log('all assets loaded');
         };
         
@@ -57,6 +61,7 @@
          * @this {LoadingStage}
          */
         o.fnProgress = function(name, p) {
+            this.log.innerHTML += Date.now() + ' [LoadingStage] load progress: '+name+' '+p+'%<br />';
             console.log(name, p);
             this.progress = p;
         };
@@ -87,6 +92,7 @@
          */
         o.render = function() {
             console.log('Progress:', this.progress);
+            this.log.innerHTML += Date.now() + ' [LoadingStage::render] total progress: '+this.progress+'%<br />';
         };
      
         return o;

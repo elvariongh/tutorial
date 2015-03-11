@@ -12,6 +12,8 @@
         
         /** @type {string}          Store stage name */
         this.name = name;
+
+	this.log = document.getElementById('log');
     };
     
     Stage.prototype = {
@@ -21,6 +23,7 @@
          * @return {number}         Return time difference (in ms) to next update
          */
         update: function(dt) {
+            this.log.innerHTML += Date.now() + ' Stage::update<br />';
             if (this.active) {
                 return 16; // 60 FPS by default
             } else {
@@ -34,6 +37,7 @@
         render: function() {
             if (!this.active) return;
             
+            this.log.innerHTML += Date.now() + ' Stage::render<br />';
             // your render code goes here
         },
         
@@ -41,6 +45,7 @@
          * Activate stage and prepare for rendering
          */
         deactivate: function() {
+            this.log.innerHTML += Date.now() + ' Stage::deactivate<br />';
             this.active = false;
         },
         
@@ -48,6 +53,7 @@
          * Deactivate stage
          */
         activate: function() {
+            this.log.innerHTML += Date.now() + ' Stage::activate<br />';
             this.active = true;
         }
     };

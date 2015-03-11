@@ -13,6 +13,8 @@ function TGE() {
     
     this.stages = {};               // key:value dictionary of game stages
     this.activeStage = undefined;   // Current active stage name
+
+    this.log = document.getElementById('log');
 };
 
 TGE.prototype = {
@@ -39,6 +41,8 @@ TGE.prototype = {
         }
 
         this.running = true;
+
+        this.log.innerHTML += Date.now() + ' TiledGameEngine started...<br />';
     },
 
     /**
@@ -55,6 +59,8 @@ TGE.prototype = {
 
         this.rAF = 0;
         this.running = false;
+
+        this.log.innerHTML += Date.now() + ' TiledGameEngine stopped...<br />';
     },
 
     /**
@@ -97,6 +103,7 @@ TGE.prototype = {
         }
         
         console.log('TGE::update');
+        this.log.innerHTML += Date.now() + ' TGE::update<br />';
         return 16;
     },
 
@@ -111,6 +118,7 @@ TGE.prototype = {
         }
 
         console.log('TGE::render');
+        this.log.innerHTML += Date.now() + ' TGE::render<br />';
     },
     
     /**
