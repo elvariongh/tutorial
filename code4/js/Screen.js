@@ -13,9 +13,9 @@
 		var t = document.querySelector(tag);
         
         if (t) {
-            t.innerHTML =   '<div id="_viewport" style="position: fixed; left: 0px; top: 0px; display:none;">'+
-                                '<canvas style="position:fixed; left:0px;  top: 0px; z-index:0;" id="_background"></canvas>'+
-                                '<canvas style="position:fixed; left:0px;  top: 0px; z-index:1;" id="_entity"></canvas>'+
+            t.innerHTML =   '<div id="_viewport" style="position: absolute; left: 50%; margin-left:-'+width/2+'px; top: 100px; display:none;">'+
+                                '<canvas style="position:absolute; left:0px;  top: 0px; z-index:0;" id="_background"></canvas>'+
+                                '<canvas style="position:absolute; left:0px;  top: 0px; z-index:1;" id="_entity"></canvas>'+
                             '</div>';
         }
 

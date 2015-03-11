@@ -4,15 +4,15 @@ function Game() {
     TiledGameEngine.call(this);
     
     // create canvas in the #viewport container
-    this.screen = new TiledGameEngine.Screen('#viewport', 320, 200);
+    this.screen = new TiledGameEngine.Screen('#viewport', 640, 480);
     
     // set "world" background
     this.screen.setBGColor('gray');
     
     // sample object to animate
     this.obj = {
-        x: ~~(Math.random()*320), 
-        y: ~~(Math.random()*200), 
+        x: ~~(Math.random()*640), 
+        y: ~~(Math.random()*480), 
         w: 16, 
         h: 16};
 
@@ -59,12 +59,8 @@ Game.prototype = (function() {
     return o;
 })();
 
-function start() {
-    var G = new Game();
-    
-    G.init();
-    
-    G.start();
-};
+var G = new Game();
+G.init();
 
-window.onload = start;
+
+//window.onload = start;
