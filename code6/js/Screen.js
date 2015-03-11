@@ -20,18 +20,20 @@
         // viewport DnD structure [startX, startY, dragging, dx, dy]
         this.dnd = new Int32Array([0, 0, 0, 0, 0]);
 
+        this.dWidth = window.innerWidth - width;
+        this.dHeight = window.innerHeight - height;
+
         // create canvas elements inside container
 		var t = document.querySelector(tag);
         
         if (t) {
-            t.innerHTML =   '<canvas style="position:fixed; left:0px;  top: 0px; z-index:0;" id="_background"></canvas>'+
-                            '<canvas style="position:fixed; left:0px;  top: 0px; z-index:1;" id="_entity"></canvas>';
+            t.innerHTML =   '<canvas style="position:absolute; left:0px;  top: 0px; z-index:0;" id="_background"></canvas>'+
+                            '<canvas style="position:absolute; left:0px;  top: 0px; z-index:1;" id="_entity"></canvas>';
         }
 
         // store viewport reference and set initial css styles
         this.domViewport = t;
-        this.domViewport.style.cssText = 'position:fixed; left: 0px; top:0px; display:none;';
-//        this.domViewport.style.cssText = 'position:absolute; left: 50%; margin-left: -'+width/2+'px; top:50%; margin-top: -'+height/2+'px; display:none;';
+        this.domViewport.style.cssText = 'position: absolute; left: 50%; margin-left:-'+width/2+'px; top: 100px; display:none;';
         
         // store canvas context for further usage
         var canvas = [document.getElementById('_background'), document.getElementById('_entity')];
@@ -115,7 +117,8 @@
     
     // resize event handler
     Screen.prototype.onResize = function(e) {
-        this.resize(e.target.innerWidth, e.target.innerHeight);
+//        this.resize(e.target.innerWidth, e.target.innerHeight);
+        this.resize(e.target.innerWidth - this.dWidth, e.target.innerHeight - this.dHeight);
     };
     
     // resize canvas and viewport

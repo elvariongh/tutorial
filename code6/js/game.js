@@ -4,7 +4,7 @@ function Game() {
     TiledGameEngine.call(this);
     
     // create canvas in the #viewport container
-    this.screen = new TiledGameEngine.Screen('#viewport', window.innerWidth, window.innerHeight);
+    this.screen = new TiledGameEngine.Screen('#viewport', 640, 480);
 
     // set "world" background
     this.screen.setBGColor('black');
@@ -19,6 +19,8 @@ function Game() {
 
     // add loader stage into game loop manager
     this.addStage('load', stage);
+
+    this.log = document.getElementById('log');
 };
 
 Game.prototype = (function() {
@@ -35,18 +37,29 @@ Game.prototype = (function() {
         
         TiledGameEngine.bus.subscribe('assetsLoaded', this.onAssetsLoaded.bind(this));
 
+        this.log.innerHTML += Date.now() + ' Game initialized...<br />';
+    };
+
+    o.start = function() {
+        // call super-class
+        TiledGameEngine.prototype.start.call(this);
+
         // activate loader stage. Loading will be started automatically (see stLoader creation)
         this.activateStage('load');
 
         // show screen
         this.screen.show(true);
+
+        this.log.innerHTML += Date.now() + ' Game started...<br />';
     };
     
     o.onAssetsLoaded = function() {
         console.log('onAssetsLoaded');
+        this.log.innerHTML += Date.now() + ' all assets loaded...<br />';
         
         if (this.assetsLoaded) return;
         
+        this.log.innerHTML += Date.now() + ' Gather info from TMX file...<br />';
         this.assetsLoaded = true;
         
         var json = this.assets.get('sage_home.json');
@@ -81,13 +94,6 @@ Game.prototype = (function() {
     return o;
 })();
 
-var G;
-function start() {
-    G = new Game();
+var G = new Game();
     
     G.init();
-    
-    G.start();
-};
-
-window.onload = start;

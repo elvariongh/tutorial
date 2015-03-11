@@ -45,6 +45,8 @@
               return this;
             };
         };
+
+        this.log = document.getElementById('log');
     };
     
     // super-class inheritance
@@ -137,6 +139,7 @@
      */
     LoadingStage.prototype.fnDone = function() {
         console.log('[LoadingStage::fnDone] all assets loaded');
+        this.log.innerHTML += Date.now() + ' [LoadingStage::fnDone] all assets loaded<br />';
 
         this.progress = 100;
         
@@ -154,6 +157,7 @@
      */
     LoadingStage.prototype.fnProgress = function(name, p) {
         console.log('[LoadingStage::fnProgress]', name, p);
+        this.log.innerHTML += Date.now() + ' [LoadingStage::fnProgress] asset loading progress: '+name+' '+p+'%<br />';
 
         this.progress = 0;
         
