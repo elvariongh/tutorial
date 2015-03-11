@@ -10,6 +10,8 @@ function TGE() {
 
     this.initialized = false;      // Flag to store init state
     this.running = false;   // Flag to store runloop state
+
+    this.log = document.getElementById('log');
 }
 
 TGE.prototype = {
@@ -31,6 +33,8 @@ TGE.prototype = {
         }
 
         this.running = true;
+
+        this.log.innerHTML += Date.now() + ' TiledGameEngine started...<br />';
     },
 
     /**
@@ -45,6 +49,8 @@ TGE.prototype = {
 
         this.rAF = 0;
         this.running = false;
+
+        this.log.innerHTML += Date.now() + ' TiledGameEngine stopped...<br />';
     },
 
     /**
@@ -82,8 +88,9 @@ TGE.prototype = {
      * @private
      */
     update: function(dt) {
+        this.log.innerHTML += Date.now() + ' update<br />';
         console.log('update');
-        return 16; // 16 ms to achieve 69 FPS
+        return 16; // 16 ms to achieve 60 FPS
     },
 
     /**
@@ -91,6 +98,7 @@ TGE.prototype = {
      * @private
      */
     render: function() {
+        this.log.innerHTML += Date.now() + ' render<br />';
         console.log('render');
     }
 };
