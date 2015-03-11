@@ -41,13 +41,6 @@ Game.prototype = (function() {
     return o;
 })();
 
-var G;
-function start() {
-    G = new Game();
+var G = new Game();
     
     G.init();
-    
-    G.start();
-};
-
-window.onload = start;

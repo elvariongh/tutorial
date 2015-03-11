@@ -18,16 +18,16 @@
         this.height = height;
 
         // create canvas elements inside container
-		var t = document.querySelector(tag);
+        var t = document.querySelector(tag);
         
         if (t) {
-            t.innerHTML =   '<canvas style="position:fixed; left:0px;  top: 0px; z-index:0;" id="_background"></canvas>'+
-                            '<canvas style="position:fixed; left:0px;  top: 0px; z-index:1;" id="_entity"></canvas>';
+            t.innerHTML =   '<canvas style="position:absolute; left:0px;  top: 0px; z-index:0;" id="_background"></canvas>'+
+                            '<canvas style="position:absolute; left:0px;  top: 0px; z-index:1;" id="_entity"></canvas>';
         }
 
         // store viewport reference and set initial css styles
         this.viewport = t;
-        this.viewport.style.cssText = 'position:fixed; left: 0px; top:0px; display:none;';
+        this.viewport.style.cssText = 'position: absolute; left: 50%; margin-left:-'+width/2+'px; top: 100px; display:none;';
         
         // store canvas context for further usage
         var canvas = [document.getElementById('_background'), document.getElementById('_entity')];

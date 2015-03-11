@@ -4,7 +4,9 @@ function Game() {
     TiledGameEngine.call(this);
     
     // create canvas in the #viewport container
-    this.screen = new TiledGameEngine.Screen('#viewport', window.innerWidth, window.innerHeight);
+//    this.screen = new TiledGameEngine.Screen('#viewport', window.innerWidth, window.innerHeight);
+    this.screen = new TiledGameEngine.Screen('#viewport', 640, 480);
+
 
     // set "world" background
     this.screen.setBGColor('gray');
@@ -29,7 +31,11 @@ Game.prototype = (function() {
         
         // request assets from server
         this.stLoader.request(['sage_home.png', 'sage_home.json', 'grassland1.json']);
-
+    };
+    
+    o.start = function() {
+        // call super-class
+        TiledGameEngine.prototype.start.call(this);
         // activate loader stage. Loading will be started automatically (see stLoader creation)
         this.activateStage('load');
 
@@ -40,12 +46,12 @@ Game.prototype = (function() {
     return o;
 })();
 
-function start() {
     var G = new Game();
     
     G.init();
+//function start() {
     
-    G.start();
-};
+//    G.start();
+// };
 
-window.onload = start;
+// window.onload = start;

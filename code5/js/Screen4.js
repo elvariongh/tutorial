@@ -30,7 +30,7 @@
 
         // store viewport reference and set initial css styles
         this.domViewport = t;
-        this.domViewport.style.cssText = 'position:absolute; left: 50%; margin-left: -'+width/2+'px; top:50%; margin-top: -'+height/2+'px; display:none;';
+        this.domViewport.style.cssText = 'position:absolute; left: 50%; margin-left: -'+width/2+'px; top:100px; display:none;';
         
         // store canvas context for further usage
         var canvas = [document.getElementById('_background'), document.getElementById('_entity')];
