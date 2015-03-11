@@ -4,7 +4,7 @@ function Game() {
     TiledGameEngine.call(this);
     
     // create canvas in the #viewport container
-    this.screen = new TiledGameEngine.Screen('#viewport', window.innerWidth, window.innerHeight);
+    this.screen = new TiledGameEngine.Screen('#viewport', 640, 480);
 
     // set "world" background
     this.screen.setBGColor('black');
@@ -71,13 +71,6 @@ Game.prototype.onMapParsed = function(key, value) {
     setTimeout((function() { this.activateStage('playground'); }).bind(this), 1000);
 };
 
-var G;
-function start() {
-    G = new Game();
+var G = new Game();
     
     G.init();
-    
-    G.start();
-};
-
-window.onload = start;

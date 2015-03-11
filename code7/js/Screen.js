@@ -22,9 +22,12 @@
         
         this.layers = 0;
 
+        this.dWidth = window.innerWidth - width;
+        this.dHeight = window.innerHeight - height;
+
         // store viewport reference and set initial css styles
         this.domViewport = document.querySelector(tag);
-        this.domViewport.style.cssText = 'position:fixed; left: 0px; top:0px; display:none;';
+        this.domViewport.style.cssText = 'position: absolute; left: 50%; margin-left:-'+width/2+'px; top: 100px; display:none;';
         
         // desktop only events: resize, mousedown, mouseup, mousemove
 		window.addEventListener('resize', this.onResize.bind(this));
@@ -105,7 +108,8 @@
     
     // resize event handler
     Screen.prototype.onResize = function(e) {
-        this.resize(e.target.innerWidth, e.target.innerHeight);
+        this.resize(e.target.innerWidth - this.dWidth, e.target.innerHeight - this.dHeight);
+//        this.resize(e.target.innerWidth, e.target.innerHeight);
     };
     
     // resize canvas and viewport
@@ -162,7 +166,7 @@
         
         while(count--) {
             
-            t += '<canvas style="position:fixed; left: 0px; top: 0px; z-index: '+(i)+';" id="_tgelr'+(i)+'"></canvas>';
+            t += '<canvas style="position:absolute; left: 0px; top: 0px; z-index: '+(i)+';" id="_tgelr'+(i)+'"></canvas>';
             
             ++i;
         }
