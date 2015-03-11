@@ -1,0 +1,29 @@
+<html>
+<script language="javascript">
+var lasttime, ttu;
+function animationFrame(time) {
+    var dt = ~~(time - lasttime);
+    if (ttu - dt > 0) {
+        // comment it for setInterval
+        requestAnimationFrame(animationFrame);
+        return;
+    }
+    lasttime = time;
+    ttu = update(dt, time);
+    render();
+    // comment it for setInterval
+    requestAnimationFrame(animationFrame);
+}
+
+function update(dt, time) {
+    return 16; // 60 FPS by default
+}
+
+function render() {
+    // render code goes here
+}
+
+requestAnimationFrame(animationFrame);
+//setInterval(render, 16);
+</script>
+</html>
