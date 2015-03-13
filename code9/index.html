@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang='en-EN'>
+    <head>
+        <title>Tiled Game Engine tutorial</title>
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0">
+        <!-- script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script -->
+    </head>
+    <body>
+        <!-- Code tutorial adblock1 -->
+        <center><ins class="adsbygoogle" style="display:block;left:50%;margin-left" data-ad-client="ca-pub-4844196679616207" data-ad-slot="1553197177" data-ad-format="auto"></ins></center>
+        <!-- code tutorial adblock3 -->
+        <div style="float:left;"><ins class="adsbygoogle" style="display:inline-block;width:300px;height:600px" data-ad-client="ca-pub-4844196679616207" data-ad-slot="7460129971"></ins></div>
+
+        <div id="viewport">
+        <div id="options" style="display: none; position:absolute; left: 50%; margin-left: -300px; width: 600px; height: 440px; overflow-y:scroll; top: 120px; z-index:10; background: rgba(255, 255, 255, 0.9); padding:5px; 	box-shadow: 0 0 20px black;">
+            <h4>General</h4>
+			<button onclick="G.start();">Start Engine</button>
+			<button onclick="G.stop();">Stop Engine</button>
+            <h4>Appearance</h4>
+            <button onclick="G.toggleFullscreen();">Toggle fullscreen</button>
+            <button onclick="G.toggleAnimation();">Toggle animation</button>
+			<button onclick="G.toggleGrid();">Toggle grid</button>
+            <h5>Effects</h5>
+			<button onclick="G.toggleEarthQuake();">Earth quake</button>
+            <center><button style="float:bottom;" onclick="G.options();">Close</button></center>
+        </div>
+        </div>
+		<div style="position: absolute; left: 50%; margin-left: -320px; height:32px; top: 590px;">
+			<button onclick="G.start();">Start Engine</button>
+			<button onclick="G.stop();">Stop Engine</button><br />
+			Animation state:    <button onclick="G.changeState('stance');">Stance</button>
+                                <button onclick="G.changeState('run');">Run</button>
+                                <button onclick="G.changeState('block');">Block</button>
+                                <button onclick="G.changeState('hit');">Hit</button>
+                                <button onclick="G.changeState('cast');">Cast</button>
+                                <button onclick="G.changeState('shoot');">Shoot</button>
+                                <button onclick="G.changeState('die');">Die</button>
+                                <button onclick="G.changeState('critdie');">Critdie</button>
+                                <button onclick="G.changeState('swing');">Swing</button><br />
+            Rotate units:       <button onclick="G.rotate(-1);">CW</button><button onclick="G.rotate(1);">CCW</button> 
+			<br />Description of that sample availe in the <a href="http://www.elvarion.com/canvas-and-viewport-part-1/">blog</a>
+		</div>
+        
+        <!-- code tutorial adblock2 -->
+        <div style="float:right"><ins class="adsbygoogle" style="display:inline-block;width:300px;height:600px" data-ad-client="ca-pub-4844196679616207" data-ad-slot="4506663578"></ins></div>
+    
+        <script type="text/javascript" src="js/3rdpty/fpsmeter.min.js"></script>
+        <script type="text/javascript" src="js/Utils.js"></script>
+        
+        <script type="text/javascript" src="js/TiledGameEngine.js"></script>
+        <script type="text/javascript" src="js/Stage.js"></script>
+        <script type="text/javascript" src="js/Assets.js"></script>
+        <script type="text/javascript" src="js/LoadingStage.js"></script>
+        <script type="text/javascript" src="js/PubSub.js"></script>
+        <script type="text/javascript" src="js/ViewPort.js"></script>
+        <script type="text/javascript" src="js/Device.js"></script>
+        <script type="text/javascript" src="js/TiledMap.js"></script>
+        <script type="text/javascript" src="js/TiledMapStage.js"></script>
+        
+        <script type="text/javascript" src="js/EntitiesFactory.js"></script>
+        <script type="text/javascript" src="js/Entities/Entity.js"></script>
+        <script type="text/javascript" src="js/Entities/Tile.js"></script>
+        <script type="text/javascript" src="js/Entities/Unit.js"></script>
+        
+        <script type="text/javascript" src="js/game.js"></script>
+
+        <!-- GOOGLE CODE -->
+        <!--
+        <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-59582823-1', 'auto');ga('send', 'pageview');</script>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});(adsbygoogle = window.adsbygoogle || []).push({});(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        -->
+    </body>
+</html>

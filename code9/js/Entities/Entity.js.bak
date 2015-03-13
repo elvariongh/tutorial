@@ -1,0 +1,42 @@
+(function(w, TGE) {
+    "use strict";
+    function Entity() {
+        this.am = undefined;
+        this.map = undefined;
+        
+        this.x = this.y = this.z = 0;
+        this.name = '';
+        
+        this.img = undefined;
+        
+        this.redraw = false;
+    };
+    
+    Entity.prototype.init = function(data, assetManager, map) {
+        this.am = assetManager;
+        this.map = map;
+        
+        this.x = data.x || 0;
+        this.y = data.y || 0;
+        this.z = this.x + this.y*map.width*20;
+        
+        this.name = data.name;
+        
+        this._data = data;
+        
+        this.visible = true;
+        this.redraw = true;
+    };
+    
+    Entity.prototype.update = function(dt, time, viewport) {
+        return 1000;
+    };
+    
+    Entity.prototype.render = function(ctx, stage, viewport) {
+        if (!this.redraw || !this.visible || !this.img) return;
+        
+        this.redraw = false;
+    };
+    
+    TGE.EntitiesFactory.register('Entity', Entity);
+})(window, TiledGameEngine);
