@@ -332,7 +332,10 @@
             data = layer['data'],
             l = data.length;
 
+        // check if that layer was already converted
         if (layer['converted']) return;
+        
+        // if layer is not visible - ignore it
         if (!layer['visible']) return;
         
         for (; j < l; ++j) {
@@ -349,7 +352,8 @@
             
             this['objects'][this['objects'].length] = TGE['EntitiesFactory']['create'](d, this['assetsManager'], this);
         }
-        
+
+        // mark layer as converted and not attended to be rendered directly
         layer['visible'] = false;
         layer['converted'] = true;
     }

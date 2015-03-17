@@ -20,11 +20,11 @@
             ent['init'].apply(ent, arguments);
             
             return ent;
-        } else if (this['entity']) {
+        /* } else if (this['entity']) {
             var ent = new this['entity']();
             ent['init'].apply(ent, arguments);
             
-            return ent;
+            return ent; */
         }
         
         return undefined;

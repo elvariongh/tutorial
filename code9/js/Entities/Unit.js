@@ -34,7 +34,6 @@
         TiledGameEngine['EntitiesFactory']['entity'].prototype['init'].call(this, data, assetManager, map);
 
         this.img = assetManager.get(data['properties']['img']);
-//        this.inf = data['properties']['inf'];
 
         this.imgName = data['properties']['img'];
         
@@ -62,9 +61,6 @@
                     }
                 }
             }
-            
-            
-//            this.animation[this.state].duration /= 2;
         }
         
         this.frameIdx = 0;
@@ -117,13 +113,9 @@
             return 1000;
         }
 
-//        this.dt = ~~(time - this.lasttime);
-//        if (this.dt > this.animation[this.state]['duration']) {
         if (time >= this.lasttime) {
-            
             if (!this.lasttime) this.lasttime = time;
-            
-            while (time >= this.lasttime) { //this.animation[this.state]['duration']) {
+            while (time >= this.lasttime) {
                 if (this.animation[this.state]['type'] === 'looped') {
                     this.frameIdx = (this.frameIdx + 1) % this.animation[this.state]['frames'];
                 } else if (this.animation[this.state]['type'] === 'back_forth') {
@@ -148,16 +140,11 @@
                 }
                 
                 this.lasttime += this.animation[this.state]['duration'];
-            
-//                this.dt -= this.animation[this.state]['duration'];
             }
-            
-//            this.lasttime = time;
-            
             this.redraw = true;
-        } else {
         }
-            this.dt = this.lasttime - time;
+
+        this.dt = this.lasttime - time;
     
         if (!this.img) {
             this.img = this.am.get(this.imgName);
@@ -165,19 +152,8 @@
             this.redraw = false;
         }
         
-//        this.scr = stage.tile2Scr( this.x, this.y);
-
         // check if unit is visible
-        if (this.scr) {
-            if (this.scr[0] + ~~(this.width/2) + viewport[0] > 0 &&
-                this.scr[1] + ~~(this.height/2) + viewport[1] > 0 &&
-                this.scr[0] + viewport[0] - ~~(this.width/2) < viewport[2] &&
-                this.scr[1] + viewport[1] - ~~(this.height/2) < viewport[3]) {
-                this.visible = true;
-            } else {
-                this.visible = false;
-            }
-        }
+        this.isVisible(viewport);
         
         if (!this.visible) {
             this.redraw = false;
@@ -193,6 +169,23 @@
         return ~~(this.dt);
     };
     
+    Unit.prototype.isVisible = function(viewport) {
+        if (this.scr) {
+            if (this.scr[0] + ~~(this.width/2) + viewport[0] > 0 &&
+                this.scr[1] + ~~(this.height/2) + viewport[1] > 0 &&
+                this.scr[0] + viewport[0] - ~~(this.width/2) < viewport[2] &&
+                this.scr[1] + viewport[1] - ~~(this.height/2) < viewport[3]) {
+                this.visible = true;
+            } else {
+                this.visible = false;
+            }
+        } else {
+            this.visible = true;
+        }
+        
+        return this.visible;
+    }
+    
     Unit.prototype.render = function render(ctx, stage, viewport) {
         if (!this.visible || !this.img) return;
         
@@ -202,17 +195,11 @@
         }
 
         this.frame = this.animation[this.state]['frame'][this.frameIdx][this.direction];
-        
-        // ctx.strokeRect(                                this.scr[0] + viewport[0] - this.frame[4], 
-                                // this.scr[1] + viewport[1] - this.frame[5], 
-                                // this.frame[2], this.frame[3]);
 
         ctx.drawImage(this.img, this.frame[0], this.frame[1], this.frame[2], this.frame[3], 
                                 this.scr[0] + viewport[0] - this.frame[4], 
                                 this.scr[1] + viewport[1] - this.frame[5], 
                                 this.frame[2], this.frame[3]);
-                                
-//        console.log(this.name, this.frameIdx, this.animation[this.state]['duration'], this.lasttime);
     };
     
     TGE.EntitiesFactory.register('unit', Unit);
