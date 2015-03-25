@@ -584,5 +584,12 @@
         }
     }
 
+    ViewPort.prototype.fullscreen = function() {
+        if (document.fullscreenEnabled) {
+            ducument.exitFullscreen();
+        } else {
+            this.domViewport.requestFullscreen();
+        }
+    }
     TGE['ViewPort'] = ViewPort;
 })(window, TiledGameEngine);
