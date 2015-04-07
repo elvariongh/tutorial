@@ -1,0 +1,25 @@
+<html>
+<body>
+    <div id="someid" style="width:100px; height:100px; border:1px solid black">
+        Sample div
+    </div>
+</body>
+
+<script>
+function main() {
+    var el = document.getElementById('someid');
+    el.addEventListener('click', onClickHanlder);
+}
+
+function onClickHanlder() {
+    requestAnimationFrame(render);
+}
+
+function render() {
+    var el = document.getElementById('someid');
+    el.style.cssText += 'border: 1px solid red;'
+}
+
+document.onload = main();
+</script>
+</html>
